@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bus Booking | BookMyWings</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #88a7c7ff;
+    }
+    .bus-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(8, 8, 8, 0.05);
+    }
+    .rating-badge {
+      background-color: #71dd8bff;
+      color: white;
+      border-radius: 5px;
+      padding: 3px 8px;
+      font-weight: bold;
+    }
+    .view-btn {
+      background-color: #933b9b;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 8px 20px;
+      font-weight: bold;
+    }
+    .filter-sidebar {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .search-box {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .slideshow {
+      height: 120px;
+      background-color: #fff;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <ul class="nav nav-tabs" id="modeTabs">
+      <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#busTab"><img src="images/goconnect_logo.svg" alt="Busimg" height="80" width="30" >Bus</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#trainTab">Train</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#planeTab">Plane</a></li>
+    </ul>
+    </div>
+    <div class="tab-content">
+      <!-- Bus Tab -->
+      <div class="container mt-4">
+        <div class="slideshow">Special Offers Here (Slideshow Placeholder)</div>
+        <div class="search-box" id="busTab">
+          <form id="busSearchForm">
+            <div class="row g-3">
+              <div class="col-md-5">
+                <label for="pickup">Pickup:</label>
+                <input type="text" id="pickup" list="cityList" autocomplete="off" class="form-control">
+              </div>
+              <div class="col-md-6">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" list="cityList" autocomplete="off" class="form-control">
+              </div>
+              <div class="col-md-3">
+                <label for="date">Date:</label>
+                <input type="date" id="travelDate" class="form-control">
+                </div>
+            <datalist id="cityList"></datalist>
+            <button type="submit" class="btn btn-primary mt-3">Search Buses</button>
+          </div>
+          </form>
+        </div>
+      <!-- <div class="tab-pane fade show active" id="busTab">
+        <form id="busSearchForm">
+          <div class="row g-3">
+            <div class="col-md-5">
+              <label for="pickup">Pickup:</label>
+              <input type="text" id="pickup" list="cityList" autocomplete="off" class="form-control" placeholder="Pickup">
+            </div>
+            <div class="col-md-5">
+              <label for="destination">Destination:</label>
+              <input type="text" id="destination" list="cityList" autocomplete="off" class="form-control" placeholder="Destination">
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-danger w-100">Search</button>
+            </div>
+          </div>
+        </form>
+        </div> -->
+        <br>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="filter-sidebar">
+              <h5>Filter buses</h5>
+              <strong>Bus Type</strong><br>
+              <button type="button" class="btn btn-outline-secondary w-100" onclick="filterByType('AC')">AC</button>
+              <button type="button" class="btn btn-outline-secondary w-100" onclick="filterByType('NON AC')">NON AC</button>
+              <button type="button" class="btn btn-outline-secondary w-100" onclick="filterByType('SLEEPER')">SLEEPER</button>
+              <button type="button" class="btn btn-outline-secondary w-100" onclick="filterByType('SEATER')">SEATER</button>
+
+              <hr>
+              <strong>Timing</strong><br>
+              <input type="checkbox" id="morning"> Morning (5 AM - 12 PM)<br>
+              <input type="checkbox" id="afternoon"> Afternoon (12 PM - 5 PM)<br>
+              <input type="checkbox" id="evening"> Evening (5 PM - 9 PM)<br>
+              <input type="checkbox" id="night"> Night (9 PM - 5 AM)<br>
+
+              <hr>
+              <strong>Amenities</strong><br>
+              <input type="checkbox" id="toilet"> Toilet<br>
+              <input type="checkbox" id="water"> Water Bottle<br>
+              <input type="checkbox" id="blanket"> Blankets<br>
+              <input type="checkbox" id="charging"> Charging Point<br>
+              <hr>
+              <strong>Sort By</strong><br>
+              <select class="form-select" id="sortOptions" onchange="applySort()">
+                <option value="popularity">Popularity</option>
+                <option value="rating">Ratings (High to Low)</option>
+                <option value="lowPrice">Price (Low to High)</option>
+                <option value="highPrice">Price (High to Low)</option>
+              </select>
+              <hr>
+              <button type="button" class="btn btn-success w-100" onclick="applyFilters()">Apply Filters</button>
+              <button type="button" class="btn btn-danger w-100 mt-2" onclick="clearFilters()">Clear All</button>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <p class="text-success mb-2">10000+ searches on this route last month</p>
+            <div id="busResults"></div>
+          </div>
+        </div>
+        </div>
+      <!-- Train Tab -->
+      <div class="tab-pane fade" id="trainTab">
+        <form id="trainSearchForm" class="my-3">
+          <div class="row g-3">
+            <div class="col-md-5">
+              <input type="text" id="trainFrom" list="cityList" autocomplete="off" class="form-control" placeholder="From">
+            </div>
+            <div class="col-md-5">
+              <input type="text" id="trainTo" list="cityList" autocomplete="off" class="form-control" placeholder="To">
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
+          </div>
+        </form>
+        <div id="trainResults"></div>
+      </div>
+      <div class="tab-pane fade" id="planeTab">
+        <form id="planeSearchForm" class="my-3">
+          <div class="row g-3">
+            <div class="col-md-5">
+              <input type="text" id="planeFrom" list="cityList" autocomplete="off" class="form-control" placeholder="From">
+            </div>
+            <div class="col-md-5">
+              <input type="text" id="planeTo" list="cityList" autocomplete="off" class="form-control" placeholder="To">
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="btn btn-success w-100">Search</button>
+            </div>
+          </div>
+        </form>
+        <div id="planeResults"></div>
+      </div>
+    </div>
+
+
+<script>
+const buses = [
+  { name: "Laxmi Holidays", type: "AC SLEEPER", time: "22:10", duration: "9h 10m", rating: 4.4, seats: 46, price: 607, amenities: ["charging"] },
+  { name: "Laxmi Empress", type: "NON AC SLEEPER", time: "21:15", duration: "9h 30m", rating: 4.3, seats: 30, price: 700, amenities: ["blanket"] },
+  { name: "Ashray Travels", type: "NON AC SEATER", time: "21:15", duration: "9h 15m", rating: 4.8, seats: 45, price: 580, amenities: ["toilet", "water"] },
+  { name: "VRL Travels", type: "NON AC SLEEPER", time: "20:30", duration: "8h", rating: 4.5, seats: 35, price: 650, amenities: ["charging", "blanket"] },
+  { name: "SRS Travels", type: "AC SEATER", time: "19:45", duration: "7h 30m", rating: 4.6, seats: 40, price: 750, amenities: ["water"] },
+  { name: "KST Travels", type: "AC SLEEPER", time: "23:00", duration: "10h", rating: 4.2, seats: 50, price: 800, amenities: ["toilet"] },
+  { name: "Neeta Travels", type: "AC SLEEPER", time: "22:30", duration: "9h 45m", rating: 4.7, seats: 42, price: 900, amenities: ["charging"] },
+  { name: "VRL Travels", type: "AC SEATER", time: "20:00", duration: "8h 15m", rating: 4.5, seats: 38, price: 850, amenities: ["water", "charging"] },
+  { name: "SRS Travels", type: "NON AC SLEEPER", time: "21:00", duration: "9h 30m", rating: 4.1, seats: 48, price: 500, amenities: ["blanket"], routes: ["Mumbai", "Pune", "Goa"] },
+  { name: "KST Travels", type: "AC SLEEPER", time: "22:15", duration: "9h 5m", rating: 4.3, seats: 44, price: 620, amenities: ["toilet"], routes: ["Kolhapur", "Nashik", "Satara", "Ratnagiri"] },
+  { name: "Neeta Travels", type: "AC SEATER", time: "20:45", duration: "8h 20m", rating: 4.6, seats: 39, price: 780, amenities: ["charging", "water"], routes: ["Sawantwadi", "Ratnagiri", "Kudal", "Kankavli"] },
+  { name: "Laxmi Holidays", type: "AC SLEEPER", time: "22:10", duration: "9h 10m", rating: 4.4, seats: 46, price: 607, amenities: ["charging"], routes: ["Delhi", "Jaipur", "Udaipur","Mumbai", "Pune", "Goa"] },
+{
+name: "Laxmi Holidays",type: "AC SLEEPER",time: "22:10",duration: "9h 10m",rating: 4.4,seats: 46,
+price: 607,amenities: ["charging"],routes: ["Delhi", "Jaipur", "Udaipur"]},
+{name: "Ashray Travels",type: "NON AC SEATER",time: "21:15",duration: "9h 15m",rating: 4.8,seats: 45,
+price: 580,amenities: ["toilet", "water"],routes: ["Mumbai", "Pune", "Goa"]},
+{name: "VRL Travels",type: "NON AC SLEEPER",time: "20:30",duration: "8h",rating: 4.5,seats: 35,
+price: 650,amenities: ["charging", "blanket"],routes: ["Bangalore", "Chennai", "Hyderabad"]}];
+
+function renderBuses(busList) {
+  const container = document.getElementById("busResults");
+  container.innerHTML = '';
+  busList.forEach(bus => {
+    const card = `<div class="bus-card">
+      <div class="d-flex justify-content-between flex-wrap">
+        <div><h5>${bus.name}</h5><small>${bus.type}</small></div>
+        <div><span class="rating-badge">${bus.rating} ★</span><br><small>${bus.seats} ratings</small></div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
+        <div><strong>${bus.time}</strong> — <strong>07:20</strong><br><small>${bus.duration}</small></div>
+        <div><small>${bus.seats} Seats</small></div>
+        <div><strong>₹${bus.price}</strong><br><small>Onwards</small></div>
+        <div><button class="view-btn">View Seats</button></div>
+      </div>
+    </div>`;
+    container.innerHTML += card;
+  });
+}
+
+function filterByType(type) {
+  const filtered = buses.filter(bus => bus.type.toUpperCase().includes(type.toUpperCase()));
+  renderBuses(filtered);
+}
+
+function applySort() {
+  const sortType = document.getElementById("sortOptions").value;
+  let sorted = [...buses];
+  if (sortType === "rating") sorted.sort((a, b) => b.rating - a.rating);
+  if (sortType === "lowPrice") sorted.sort((a, b) => a.price - b.price);
+  if (sortType === "highPrice") sorted.sort((a, b) => b.price - a.price);
+  renderBuses(sorted);
+}
+
+function applyFilters() {
+  let filtered = [...buses];
+  if (document.getElementById("morning").checked) filtered = filtered.filter(b => parseInt(b.time) >= 5 && parseInt(b.time) < 12);
+  if (document.getElementById("afternoon").checked) filtered = filtered.filter(b => parseInt(b.time) >= 12 && parseInt(b.time) < 17);
+  if (document.getElementById("evening").checked) filtered = filtered.filter(b => parseInt(b.time) >= 17 && parseInt(b.time) < 21);
+  if (document.getElementById("night").checked) filtered = filtered.filter(b => parseInt(b.time) >= 21 || parseInt(b.time) < 5);
+  if (document.getElementById("toilet").checked) filtered = filtered.filter(b => b.amenities.includes("toilet"));
+  if (document.getElementById("water").checked) filtered = filtered.filter(b => b.amenities.includes("water"));
+  if (document.getElementById("blanket").checked) filtered = filtered.filter(b => b.amenities.includes("blanket"));
+  if (document.getElementById("charging").checked) filtered = filtered.filter(b => b.amenities.includes("charging"));
+  renderBuses(filtered);
+}
+
+function clearFilters() {
+  document.querySelectorAll('.filter-sidebar input[type="checkbox"]').forEach(cb => cb.checked = false);
+  document.getElementById("sortOptions").value = "popularity";
+  renderBuses(buses);
+}
+
+// Prevent same pickup and destination
+document.getElementById("busSearchForm").addEventListener("submit", function(e) {
+  const pickup = document.getElementById("pickup").value.trim().toLowerCase();
+  const destination = document.getElementById("destination").value.trim().toLowerCase();
+  if (pickup === destination && pickup !== '') {
+    alert("Pickup point and destination cannot be the same.");
+    e.preventDefault();
+  }
+});
+
+// Load city list from JSON (You must host `private_bus_locations.json`)
+fetch('private_bus_locations.json')
+  .then(res => res.json())
+  .then(data => {
+    const citySet = new Set();
+    data.forEach(operator => {
+      operator.routes.forEach(city => citySet.add(city));
+    });
+    const datalist = document.getElementById('cityList');
+    [...citySet].sort().forEach(city => {
+      const option = document.createElement('option');
+      option.value = city;
+      datalist.appendChild(option);
+    });
+  });
+  
+// Initial render
+renderBuses(buses);
+function renderBuses(busList) {
+  const container = document.getElementById("busResults");
+  container.innerHTML = '';
+
+  if (busList.length === 0) {
+    container.innerHTML = `
+      <div class="text-center p-4 bg-white rounded shadow-sm">
+        <h5 class="text-danger">No Buses Found</h5>
+        <p>Please try different filters or routes.</p>
+      </div>`;
+    return;
+  }
+
+  busList.forEach(bus => {
+    const card = `<div class="bus-card">
+      <div class="d-flex justify-content-between flex-wrap">
+        <div><h5>${bus.name}</h5><small>${bus.type}</small></div>
+        <div><span class="rating-badge">${bus.rating} ★</span><br><small>${bus.seats} ratings</small></div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
+        <div><strong>${bus.time}</strong> — <strong>07:20</strong><br><small>${bus.duration}</small></div>
+        <div><small>${bus.seats} Seats</small></div>
+        <div><strong>₹${bus.price}</strong><br><small>Onwards</small></div>
+        <div><button class="view-btn">View Seats</button></div>
+      </div>
+    </div>`;
+    container.innerHTML += card;
+  });
+}
+document.getElementById("busSearchForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const pickup = document.getElementById("pickup").value.trim();
+  const destination = document.getElementById("destination").value.trim();
+
+  if (pickup.toLowerCase() === destination.toLowerCase() && pickup !== '') {
+    alert("Pickup point and destination cannot be the same.");
+    return;
+  }
+
+  searchBusesByRoute(pickup, destination);
+});
+function searchBusesByRoute(pickup, destination) {
+  const filteredBuses = buses.filter(bus => 
+    bus.routes && bus.routes.includes(pickup) && bus.routes.includes(destination)
+  );
+  renderBuses(filteredBuses);
+}
+//date selection on bus search
+  const travelDateInput = document.getElementById("travelDate");
+
+  const today = new Date();  // e.g., 17 July 2025
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); // Month is 0-based
+  const dd = String(today.getDate()).padStart(2, '0');
+
+  const formattedToday = `${yyyy}-${mm}-${dd}`;
+  travelDateInput.min = formattedToday;
+
+  // Optional: Set today's date as default
+  travelDateInput.value = formattedToday;
+</script>
+
+</body>
+</html>

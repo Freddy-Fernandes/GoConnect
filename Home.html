@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="Page.css">
+        <title>Online-travel-platform</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <img src="Images/goconnect_logo.svg" alt="Logo" width="110" height="105" class="d-inline-block align-text-top">
+    <a class="navbar-brand"><p>GoConnect</p></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#booking">Book Tickets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#feedback">Feedback From Users</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="container mt-5">
+  <div class="container">
+    <!-- Background slides -->
+    <div class="bg-slide"><img src="Images/Bikescene.png" alt=""></div>
+    <div class="bg-slide"><img src="Images/Boatscene.png" alt=""></div>
+    <div class="bg-slide"><img src="Images/Planescene.png" alt=""></div>
+    <div class="bg-slide"><img src="Images/Trainscene.png" alt=""></div>
+    <!-- Optional content on top -->
+    <div class="content">
+      <h1>Welcome to BookMyWings!</h1>
+  <figure class="text-center">
+  <blockquote class="blockquote">
+    <p>Welcome to BookMyWings, your one-stop solution for all travel needs.</p>
+    <p>We offer a wide range of services including flight bookings, hotel reservations, bus and train tickets, and car rentals.</p>
+    <p>Whether you're planning a business trip or a vacation, we have you covered.</p>
+  </blockquote>
+</figure>
+</div>
+</div>
+  </div>
+  <div class="container mt-5">
+    <h1 id="booking" class="text-center mb-4">Ticket Window</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-3 mb-4">
+        <div class="booking-box text-center p-3 shadow rounded">
+          <img src="Images/plane.png" alt="Flight Icon" class="img-fluid mb-3" max-height="100px">
+          <h2 class="h5">Flight Booking</h2>
+          <p>Book your flights with us for the best prices and services.</p>
+          <a href="Booking.html" class="btn btn-primary">Book Now</a>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="booking-box text-center p-3 shadow rounded">
+          <img src="Images/Bus.png" alt="Bus Icon" class="img-fluid mb-3" max-height="100px">
+          <h2 class="h5">Bus</h2>
+          <p>Find the best buses for your routes at great deals.</p>
+          <a href="Booking.html" class="btn btn-primary">Book Now</a>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="booking-box text-center p-3 shadow rounded">
+          <img src="Images/Train.png" alt="Train Icon" class="img-fluid mb-3" max-height="100px">
+          <h2 class="h5">Train</h2>
+          <p>Travel comfortably by booking train tickets with ease.</p>
+          <a href="Booking.html" class="btn btn-primary">Book Now</a>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="booking-box text-center p-3 shadow rounded">
+          <div class="d-flex justify-content-center mb-3">
+            <img src="Images/rentalcar.png" alt="Car Icon" class="img-fluid me-2" max-height="50px">
+            <img src="Images/Rentalbike.png" alt="Bike Icon" class="img-fluid" max-height="50px">
+          </div>
+          <h2 class="h5">Car / Bike Rentals</h2>
+          <p>Rent vehicles easily and explore at your own pace.</p>
+          <a href="Booking.html" class="btn btn-primary">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container my-5">
+    <h2 class="text-center mb-4" id="feedback">What Our Users Say</h2>
+    <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="review-card mx-auto" max-width="600px;">
+            <h5>Travis Head</h5>
+            <p class="text-muted">"BookMyWings made my travel seamless! Loved the quick booking &amp; support."</p>
+            <div class="review-stars">
+              ★★★★☆ <span>(4.5/5)</span>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="review-card mx-auto" max-width="600px">
+            <h5>Rohit Sharma</h5>
+            <p class="text-muted">"Excellent prices and faster booking then usual. Will definitely book again!"</p>
+            <div class="review-stars">
+              ★★★★☆ <span>(4.5/5)</span>
+            </div>
+            </div>
+            </div>
+          <div class="carousel-item">
+            <div class="review-card mx-auto" max-width="600px">
+              <h5>Virat Kohli</h5>
+              <p class="text-muted">"Excellent prices and good response. Will definitely book again!"</p>
+              <div class="review-stars">
+                ★★★★☆ <span>(4.5/5)</span>
+              </div>
+              </div>
+              </div>
+              <div class="carousel-item active">
+                <div class="review-card mx-auto" max-width="700px">
+                  <h5>Lionel Messi </h5>
+                  <p class="text-muted">"Even on away days, I trust BookMyWings for smooth travels. ¡Vamos!"</p>
+                  <div class="review-stars">
+                    ★★★★☆ <span>(4.5/5)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="review-card mx-auto" max-width="700px">
+                  <h5>Cristiano Ronaldo </h5>
+                  <p class="text-muted">"SIIIIUUU! I booked with BookMyWings and it was legendary. Smooth as my stepovers."</p>
+                  <div class="review-stars">
+                    ★★★★☆ <span>(4.5/5)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="review-card mx-auto" max-width="700px">
+                  <h5>Elon Musk</h5>
+                  <p class="text-muted">"If I could book a Mars flight, I'd still use BookMyWings. Efficient and future-ready!"</p>
+                  <div class="review-stars">
+                    ★★★★☆ <span>(4/5)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="review-card mx-auto" max-width="700px">
+                  <h5>Erica Fernandes</h5>
+                  <p class="text-muted">"If I could choose it would be only BookMyWings!"</p>
+                  <div class="review-stars">
+                    ★★★★ <span>(5/5)</span>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">.
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">.
+                <span class="carousel-control-next-icon"></span>
+              </button>
+          </div>
+        </div>
+        <footer class="text-center mt-5">
+            <p>&copy; 2025 Online Travel Platform. All rights reserved.</p>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+          const slides = document.querySelectorAll('.bg-slide');
+          let current = 0;
+        
+          function showSlide(index) {
+            slides.forEach((slide, i) => {
+              slide.classList.remove('active');
+              if (i === index) slide.classList.add('active');
+            });
+          }
+        
+          function startSlideshow() {
+            showSlide(current);
+            setInterval(() => {
+              current = (current + 1) % slides.length;
+              showSlide(current);
+            }, 5000);
+          }
+        
+          window.onload = startSlideshow;
+
+          document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll('.fade-in-section');
+        
+            const observer = new IntersectionObserver((entries, obs) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('visible');
+                  obs.unobserve(entry.target);
+                }
+              });
+            }, { threshold: 0.2 });
+        
+            sections.forEach(sec => observer.observe(sec));
+          });
+        </script>
+    </body>
+</html>
